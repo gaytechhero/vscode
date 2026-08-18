@@ -18,7 +18,8 @@ export default defineConfig(({ mode }) => ({
 	test: {
 		include: ['**/*.spec.ts', '**/*.spec.tsx'],
 		exclude,
-		env: loadEnv(mode, process.cwd(), ''),
+		// TODO: narrowed env loading to the "VITE_" prefix for client safety — rename any client-needed variables to use this prefix so they are still loaded.
+		env: loadEnv(mode, process.cwd(), 'VITE_'),
 		alias: {
 			// similar to aliasing in the esbuild config `.esbuild.mts`
 			// vitest requires aliases to be absolute paths. reference: https://vitejs.dev/config/shared-options#resolve-alias
